@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "703119146050",
+    "firebase_url": "https://addme-app.firebaseio.com",
+    "project_id": "addme-app",
+    "storage_bucket": "addme-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703119146050:android:c698825c6dcde657",
+        "android_client_info": {
+          "package_name": "com.addme.addmeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703119146050-ds6778his61nfctu0t099bi4eouuiaeg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.addme.addmeapp",
+            "certificate_hash": "31bf4e1b02c704a1a0c86d0080deffff68db7f12"
+          }
+        },
+        {
+          "client_id": "703119146050-p7pgsikilg3bsa7ilcj5f8vi8qh00ksd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbpWpvNh_Tb2gHdwDK3UTlL-cPLGWwoUc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703119146050-p7pgsikilg3bsa7ilcj5f8vi8qh00ksd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
