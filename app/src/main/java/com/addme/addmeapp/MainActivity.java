@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -38,25 +39,31 @@ public class MainActivity extends AppCompatActivity {
 
         // Bottom Navigation
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-             @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                 switch (menuItem.getGroupId()) {
-                     case R.id.ic_profile:
-                         break;
-                     case R.id.ic_scan:
-                         break;
-                     case R.id.ic_people:
-                         break;
-                 }
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.ic_profile:
+                        break;
 
-                 return false;
-        }
-    });
+                    case R.id.ic_scan:
+
+                        break;
+
+                    case R.id.ic_people:
+                        break;
+
+                }
 
 
-
+                return false;
+            }
+        });
+        
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
         email = (TextView) findViewById(R.id.useremail);
