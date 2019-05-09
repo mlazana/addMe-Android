@@ -3,6 +3,7 @@ package com.addme.addmeapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -34,6 +35,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Bottom Navigation
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+             @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                 switch (menuItem.getGroupId()) {
+                     case R.id.ic_profile:
+                         break;
+                     case R.id.ic_scan:
+                         break;
+                     case R.id.ic_people:
+                         break;
+                 }
+
+                 return false;
+        }
+    });
+
+
+
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
         email = (TextView) findViewById(R.id.useremail);

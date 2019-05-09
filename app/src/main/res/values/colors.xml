@@ -8,6 +8,8 @@
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
 
     <!-- addMe colors -->
     <color name="orange">#B64F39</color>
