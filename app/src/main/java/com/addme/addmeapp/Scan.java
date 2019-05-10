@@ -21,7 +21,7 @@ public class Scan extends AppCompatActivity {
         title.setText("This is Scan");
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(2);
+        MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -29,13 +29,17 @@ public class Scan extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.ic_profile:
+                        Intent intent0 = new Intent(Scan.this, Profile.class);
+                        startActivity(intent0);
                         break;
 
                     case R.id.ic_scan:
-
                         break;
 
                     case R.id.ic_people:
+
+                        Intent intent1 = new Intent(Scan.this, Contacts.class);
+                        startActivity(intent1);
                         break;
 
                 }

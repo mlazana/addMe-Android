@@ -2,6 +2,7 @@ package com.addme.addmeapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.icu.text.ScientificNumberFormatter;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -48,13 +49,16 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.ic_profile:
+                        Intent intent0 = new Intent(MainActivity.this, Profile.class);
+                        startActivity(intent0);
                         break;
-
                     case R.id.ic_scan:
-
+                        Intent intent1 = new Intent(MainActivity.this, Scan.class);
+                        startActivity(intent1);
                         break;
-
                     case R.id.ic_people:
+                        Intent intent2= new Intent(MainActivity.this, Contacts.class);
+                        startActivity(intent2);
                         break;
 
                 }
