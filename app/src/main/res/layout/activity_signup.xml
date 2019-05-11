@@ -26,6 +26,16 @@
             android:src="@mipmap/ic_launcher"
             tools:ignore="ContentDescription" />
 
+        <EditText
+            android:id="@+id/full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_name"
+            android:inputType="textEmailAddress"
+            android:nextFocusDown="@id/email"
+            android:maxLines="1"
+            android:textColor="@android:color/black" />
+
 
         <EditText
             android:id="@+id/email"
@@ -43,6 +53,18 @@
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
             android:hint="@string/hint_password"
+            android:imeActionId="@+id/login"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:hint="@string/hint_repeat"
             android:imeActionId="@+id/login"
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"

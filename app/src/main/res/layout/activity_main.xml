@@ -156,7 +156,6 @@ tools:context=".MainActivity">
                 android:background="@drawable/white_orange_border_bottom"
                 app:menu="@menu/bottom_navigation_menu">
 
-
             </android.support.design.widget.BottomNavigationView>
 
 
