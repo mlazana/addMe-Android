@@ -1,40 +1,28 @@
 package com.addme.addmeapp;
 
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.icu.text.ScientificNumberFormatter;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.PopupMenu;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.addme.addmeapp.AccountActivity.LoginActivity;
-import com.addme.addmeapp.AccountActivity.SignupActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.addme.addmeapp.AccountActivity.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnChangePassword, btnRemoveUser,
-            changePassword, remove, signOut;
     private ImageButton popup;
-    private TextView email;
-
-    private EditText oldEmail, password, newPassword;
-    private ProgressBar progressBar;
+    private TextView fullname;
     private FirebaseAuth auth;
 
     @Override
@@ -70,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //get current user
+
+        fullname = (TextView) findViewById(R.id.full_name);
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
+        setDataToView(use);
+
 
 
         popup = (ImageButton) findViewById(R.id.popup);
@@ -98,15 +93,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    @SuppressLint("SetTextI18n")
-    private void setDataToView(FirebaseUser user) {
-
-        email.setText("User Email: " + user.getEmail());
-
+    // TODO: replace with name!!!!
+    private void setDataToView(FirebaseUser use) {
+        fullname.setText(use.getEmail());
 
     }
-
 
 
 }
