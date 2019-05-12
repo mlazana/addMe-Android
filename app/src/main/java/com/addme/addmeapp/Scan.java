@@ -29,7 +29,7 @@ public class Scan extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.ic_profile:
-                        Intent intent0 = new Intent(Scan.this, Profile.class);
+                        Intent intent0 = new Intent(Scan.this, MainActivity.class);
                         startActivity(intent0);
                         break;
 

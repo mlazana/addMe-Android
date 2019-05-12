@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.ic_profile:
-                        Intent intent0 = new Intent(MainActivity.this, Profile.class);
-                        startActivity(intent0);
                         break;
                     case R.id.ic_scan:
                         Intent intent1 = new Intent(MainActivity.this, Scan.class);

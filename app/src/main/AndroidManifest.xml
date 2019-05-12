@@ -19,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".Profile"/>
         <activity android:name=".Contacts"/>
         <activity android:name=".Scan"/>
         <activity android:name=".AccountActivity.SignupActivity" />

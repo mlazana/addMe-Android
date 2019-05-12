@@ -29,7 +29,7 @@ public class Contacts extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.ic_profile:
-                        Intent intent1 = new Intent(Contacts.this, Profile.class);
+                        Intent intent1 = new Intent(Contacts.this, MainActivity.class);
                         startActivity(intent1);
                         break;
 
