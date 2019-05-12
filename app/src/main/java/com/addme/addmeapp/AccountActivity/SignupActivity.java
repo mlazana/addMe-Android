@@ -19,13 +19,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private EditText inputEmail, inputPassword;     //hit ctr + enter for further details
+    private EditText inputEmail, inputPassword, inputFullName;     //hit ctr + enter for further details
     private Button btnSignIn, btnSignUp;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
+
+    DatabaseReference databaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +37,11 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
+        databaseUser = FirebaseDatabase.getInstance().getReference("users");
 
         btnSignIn = (Button) findViewById(R.id.sign_in_button);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
+        inputFullName = (EditText) findViewById(R.id.full_name);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -53,6 +59,11 @@ public class SignupActivity extends AppCompatActivity {
 
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
+                String fullname = inputFullName.getText().toString();
+
+                if (TextUtils.isEmpty(fullname)) {
+                    Toast.makeText(getApplicationContext(), "Enter your full name", Toast.LENGTH_SHORT).show();
+                }
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -68,6 +79,14 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                // Create the object user on database to save his full name
+                String id = databaseUser.push().getKey();
+
+                User user = new User(id, fullname);
+                databaseUser.child(id).setValue(user);
+
+
 
                 progressBar.setVisibility(View.VISIBLE);
                 //create user
