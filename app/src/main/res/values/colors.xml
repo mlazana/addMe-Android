@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#B64F39</color>
+    <color name="colorPrimary">#EF6134</color>
     <color name="colorPrimaryDark">#555959</color>
-    <color name="colorAccent">#D76A52</color>
+    <color name="colorAccent">#EF6134</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
@@ -12,7 +12,7 @@
 
 
     <!-- addMe colors -->
-    <color name="orange">#B64F39</color>
+    <color name="orange">#EF6134</color>
     <color name="light_orange">#D76A52</color>
     <color name="input_gray">#9C82817D</color>
 
