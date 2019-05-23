@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.addme.addmeapp.AccountActivity.User;
+import com.facebook.CallbackManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -98,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
         fullname.setText(use.getEmail());
 
     }
+
+
 
 
 }
