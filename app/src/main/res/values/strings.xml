@@ -36,4 +36,9 @@
     <string name="category_profile">Profile</string>
     <string name="title_activity_settings">Settings</string>
 
+    <!-- facebook authentication -->
+    <string name="facebook_app_id">2125721404203697</string>
+    <string name="fb_login_protocol_scheme">fb2125721404203697</string>
+
+
 </resources>
