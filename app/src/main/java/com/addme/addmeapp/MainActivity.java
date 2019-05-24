@@ -1,7 +1,6 @@
 package com.addme.addmeapp;
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,17 +13,17 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.addme.addmeapp.AccountActivity.User;
-import com.facebook.CallbackManager;
+import com.facebook.login.widget.ProfilePictureView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton popup;
     private TextView fullname;
     private FirebaseAuth auth;
+    private ProfilePictureView profile_picture;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         //get current user
 
         fullname = (TextView) findViewById(R.id.full_name);
+        profile_picture = (ProfilePictureView) findViewById(R.id.profile_image);
         auth = FirebaseAuth.getInstance();
         FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
         setDataToView(use);
@@ -91,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });//closing the setOnClickListener method
 
+        profile_picture.setProfileId(String.valueOf(use));
+
+
 
 
     }
@@ -99,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         fullname.setText(use.getEmail());
 
     }
+
 
 
 
