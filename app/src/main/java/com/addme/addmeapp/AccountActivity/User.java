@@ -2,23 +2,29 @@ package com.addme.addmeapp.AccountActivity;
 
 public class User {
 
-    String userid;
     String fullname;
+    String email;
 
     public User(){
         //constructor
     }
 
-    public User(String userid, String fullname) {
-        this.userid = userid;
+    public User(String fullname, String email) {
         this.fullname = fullname;
-    }
-
-    public String getUserid() {
-        return userid;
+        this.email = email;
     }
 
     public String getFullname() {
         return fullname;
+    }
+
+    public String getEmail() { return email;}
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 }
