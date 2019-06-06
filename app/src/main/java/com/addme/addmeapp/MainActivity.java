@@ -3,10 +3,12 @@ package com.addme.addmeapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.PopupMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +19,13 @@ import android.widget.TextView;
 import com.addme.addmeapp.AccountActivity.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.lang.reflect.Field;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -63,8 +72,9 @@ public class MainActivity extends AppCompatActivity {
         fullname = (TextView) findViewById(R.id.full_name);
         auth = FirebaseAuth.getInstance();
         FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
-        setDataToView(use);
-
+        //get the data for the current user
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(use.getUid());
+        setDataToView(ref);
 
 
         popup = (ImageButton) findViewById(R.id.popup);
@@ -90,12 +100,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });//closing the setOnClickListener method
 
-
-
     }
-    // TODO: replace with name!!!!
-    private void setDataToView(FirebaseUser use) {
-        fullname.setText(use.getEmail());
+
+    /**
+     * This method displays ONLY the fullname
+     * @param ref an instance for the data of the current user
+     */
+    private void setDataToView(DatabaseReference ref) {
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User u = dataSnapshot.getValue(User.class);
+                fullname.setText(u.getFullname());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
