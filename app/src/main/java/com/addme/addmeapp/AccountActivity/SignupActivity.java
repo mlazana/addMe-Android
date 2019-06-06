@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -80,13 +81,8 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Create the object user on database to save his full name
-                String id = databaseUser.push().getKey();
-
-                User user = new User(id, fullname);
-                databaseUser.child(id).setValue(user);
-
-
+                // Create the object user
+                final User user = new User(fullname, email);
 
                 progressBar.setVisibility(View.VISIBLE);
                 //create user
@@ -103,6 +99,11 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
+
+                                    FirebaseUser u = FirebaseAuth.getInstance().getCurrentUser();
+                                    //insert the use object to the database
+                                    databaseUser.child(u.getUid()).setValue(user);
+
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                                     finish();
                                 }
