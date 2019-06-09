@@ -132,7 +132,7 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 oldEmail.setVisibility(View.GONE);
 
-                password.setVisibility(View.GONE);
+                password.setVisibility(View.VISIBLE);
                 newPassword.setVisibility(View.VISIBLE);
 
                 changePassword.setVisibility(View.VISIBLE);
