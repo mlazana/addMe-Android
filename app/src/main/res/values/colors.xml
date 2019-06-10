@@ -24,4 +24,8 @@
     <color name="btn_login">#26ae90</color>
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
+
+    <!-- MyProfile color -->
+    <color name="blue_photo_name">#7CBAAB</color>
+    <color name="conn">#ADADAD</color>
 </resources>
