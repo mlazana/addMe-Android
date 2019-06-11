@@ -59,14 +59,36 @@
             style="?android:textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/remove"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="46dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginBottom="0dp"
             android:background="@color/colorPrimaryDark"
             android:text="@string/btn_change"
             android:textColor="@android:color/white"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteY="211dp"
-            tools:layout_editor_absoluteX="199dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/back"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/remove"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="bottom"
+            android:layout_marginEnd="46dp"
+            android:layout_marginRight="46dp"
+            android:layout_marginBottom="0dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/back"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="211dp" />
 
         <ProgressBar
             android:id="@+id/progressBar"

@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Settings extends AppCompatActivity {
 
-    private Button btnChangePassword, btnRemoveUser,
+    private Button btnChangePassword, btn_back, btnRemoveUser,
             changePassword, remove, signOut;
 
     private TextView email, oldEmail;
@@ -98,6 +98,7 @@ public class Settings extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         btnChangePassword = (Button) findViewById(R.id.change_password_button);
+        btn_back = (Button) findViewById(R.id.back);
 
         btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
 
@@ -117,6 +118,7 @@ public class Settings extends AppCompatActivity {
         newPassword.setVisibility(View.GONE);
 
         changePassword.setVisibility(View.GONE);
+        btn_back.setVisibility(View.GONE);
 
         remove.setVisibility(View.GONE);
 
@@ -126,16 +128,30 @@ public class Settings extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
 
-
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 oldEmail.setVisibility(View.GONE);
+                btn_back.setVisibility(View.VISIBLE);
 
                 password.setVisibility(View.VISIBLE);
                 newPassword.setVisibility(View.VISIBLE);
 
                 changePassword.setVisibility(View.VISIBLE);
+
+                remove.setVisibility(View.GONE);
+            }
+        });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                oldEmail.setVisibility(View.GONE);
+                btn_back.setVisibility(View.GONE);
+
+                password.setVisibility(View.GONE);
+                newPassword.setVisibility(View.GONE);
+                changePassword.setVisibility(View.GONE);
 
                 remove.setVisibility(View.GONE);
             }
