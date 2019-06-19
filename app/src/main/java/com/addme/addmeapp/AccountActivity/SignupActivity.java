@@ -82,7 +82,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 // Create the object user
-                final User user = new User(fullname, email);
+                final User user = new User(fullname, email, "", "", "", "", "", "", "");
 
                 progressBar.setVisibility(View.VISIBLE);
                 //create user
