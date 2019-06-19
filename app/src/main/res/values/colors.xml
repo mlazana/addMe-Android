@@ -28,4 +28,6 @@
     <!-- MyProfile color -->
     <color name="blue_photo_name">#7CBAAB</color>
     <color name="conn">#ADADAD</color>
+    <color name="inside_color">#E9E9E9</color>
+    <color name="color_text_social">#747474</color>
 </resources>
