@@ -13,8 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 import android.support.design.widget.TabLayout;
+
+
 
 public class Scan extends AppCompatActivity {
 
@@ -25,7 +27,7 @@ public class Scan extends AppCompatActivity {
         setContentView(R.layout.scan);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("My QR Code"));
