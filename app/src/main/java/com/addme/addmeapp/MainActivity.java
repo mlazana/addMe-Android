@@ -8,6 +8,10 @@ import android.graphics.Typeface;
 import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +42,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import android.support.v4.app.FragmentManager;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView fullname;
     private FirebaseAuth auth;
     private TextView facebook;
+    private FloatingActionButton addButton;
     public static String[] keys = {
             "facebook",
             "github",
@@ -159,14 +165,14 @@ public class MainActivity extends AppCompatActivity {
 
                 //Add to the parent layout the layer when the list of social is empty
                 if (empty == true){
-                    parent.addView(empty_social_list());
+                    parent.addView(EmptySocialList());
                 }
 
                 //Add every social item which exist in the list of social
                 if (empty == false){
                     for (String key :keys){
                         if(!social_names.get(key).isEmpty()) {
-                            RelativeLayout social_item = construct_social_item(social_names.get(key), social_icons.get(key));
+                            RelativeLayout social_item = ConstructSocialItem(social_names.get(key), social_icons.get(key));
                             parent.addView(social_item);
                         }
                     }
@@ -180,6 +186,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Social Choose Fragment
+        addButton = (FloatingActionButton) findViewById(R.id.AddActionButton);
+        addButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+
+                android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                FragmentSocialChoose fragment = new FragmentSocialChoose();
+                fragmentTransaction.add(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+
+        });
+
+
+        //Successfully added the social
+        try {
+            Intent intent = getIntent();
+            String social = intent.getStringExtra("social");
+            TextView suc_add_social = findViewById(R.id.succesful_add);
+            if (!social.isEmpty()) {
+                suc_add_social.setText("Congratulations! You just added your " + social + " account.");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -191,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
         Boolean empty = true;
         for (String key : keys){
-            if(social_names.get(key) != null){
+            if(!social_names.get(key).isEmpty()){
                 empty = false;
                 break;
             }
@@ -206,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
      * @param social_icon the social media icon
      * @return the relative layout
      */
-    private RelativeLayout construct_social_item(String name, int social_icon){
+    private RelativeLayout ConstructSocialItem(String name, int social_icon){
 
         //RelativeLayout
         RelativeLayout social_media = new RelativeLayout(getApplicationContext());
@@ -260,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
      * This method constructs a layout, for the condition that user has not added social accounts
      * @return a relative layout
      */
-    private RelativeLayout empty_social_list(){
+    private RelativeLayout EmptySocialList(){
 
         //Relative Layout
         RelativeLayout rl = new RelativeLayout(getApplicationContext());
