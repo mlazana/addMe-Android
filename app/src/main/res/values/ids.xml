@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item type="id" name="facebook_button"/>
+    <item type="id" name="instagram_button"/>
+    <item type="id" name="github_button"/>
+    <item type="id" name="viber_button"/>
+    <item type="id" name="whatsapp_button"/>
+    <item type="id" name="twitter_button"/>
+    <item type="id" name="snapchat_button"/>
+
+</resources>
