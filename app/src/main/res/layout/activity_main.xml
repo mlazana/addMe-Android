@@ -19,6 +19,7 @@
 
             <ImageButton
                 android:id="@+id/popup"
+                android:background="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="65dp"
                 android:layout_alignParentTop="true"
@@ -152,4 +153,3 @@
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
-
