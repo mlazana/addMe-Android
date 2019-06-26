@@ -50,7 +50,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton popup;
+    private ImageButton settings;
     private TextView fullname;
     private FirebaseAuth auth;
     private TextView facebook;
@@ -109,28 +109,21 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(use.getUid());
         setDataToView(ref);
 
-        popup = (ImageButton) findViewById(R.id.popup);
-        popup.setOnClickListener(new View.OnClickListener() {
 
+        //Social Choose Fragment
+        settings = (ImageButton) findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //Creating the instance of PopupMenu
-                PopupMenu popupm = new PopupMenu(MainActivity.this, popup);
-                //Inflating the Popup using xml file
-                popupm.getMenuInflater().inflate(R.menu.popup_menu, popupm.getMenu());
 
-                //registering popup with OnMenuItemClickListener
-                popupm.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Intent intent1 = new Intent(MainActivity.this, Settings.class);
-                        startActivity(intent1);
-                        return true;
-                    }
-                });
+                Intent intent = new Intent(MainActivity.this, Settings.class);
+                startActivity(intent);
 
-                popupm.show();//showing popup menu
             }
-        });//closing the setOnClickListener method
+
+        });
+
+
 
         //social list
         final Map<String, Integer> social_icons = new HashMap<String, Integer>();
@@ -348,6 +341,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
     }
 }
