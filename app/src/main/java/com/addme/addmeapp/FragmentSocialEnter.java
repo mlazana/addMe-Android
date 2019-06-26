@@ -58,7 +58,6 @@ public class FragmentSocialEnter extends Fragment {
                 //Insert username in database
                 FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(use.getUid());
-                System.out.println(username);
                 ref.child(social).setValue(username);
 
                 //The name of social that the user add

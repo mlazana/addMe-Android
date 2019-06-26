@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 suc_add_social.setText("Congratulations! You just added your " + social + " account.");
             }
         } catch (Exception e){
-            e.printStackTrace();
+
         }
 
     }
