@@ -78,6 +78,9 @@ public class Contacts extends AppCompatActivity {
 //        });
 
         final ArrayList<String> connectionUserIdArray = new ArrayList<String>();
+        //TODO: Each time it shows the last user
+        //TODO: There should be a list view that shows every connection
+
         /**
          * This ValueEventListener saves into an array, the userIDs
          * corresponding to the connections of the  current user
@@ -87,7 +90,21 @@ public class Contacts extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String userId = ds.child("userId").getValue(String.class);
-                    connectionUserIdArray.add(userId);
+                    DatabaseReference connection = FirebaseDatabase.getInstance().getReference("users").child(userId);
+
+                    connection.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            User u = dataSnapshot.getValue(User.class);
+                            full_name.setText(u.getFullname());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
                     Log.d("userId", userId);
                 }
             }
@@ -101,26 +118,6 @@ public class Contacts extends AppCompatActivity {
         };
         myRef1.addListenerForSingleValueEvent(valueEventListener);
 
-        //TODO: Here we have a problem... the size of the array that is returned is equal to zero
-        Log.v("Hellooooo!", String.valueOf(connectionUserIdArray.size()));
-
-        for (int i = 0; i < connectionUserIdArray.size(); i++) {
-            DatabaseReference connection = FirebaseDatabase.getInstance().getReference("users").child(connectionUserIdArray.get(i));
-
-            connection.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    User u = dataSnapshot.getValue(User.class);
-                    full_name.setText(u.getFullname());
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-        }
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         Menu menu = bottomNavigationView.getMenu();
