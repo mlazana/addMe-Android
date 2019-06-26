@@ -32,11 +32,13 @@ public class FragmentSocialEnter extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //Arguments from FragmentSocialChoose
         final String social = getArguments().getString("social");
         int icon = getArguments().getInt("icon");
 
         View rootview = inflater.inflate(R.layout.fragment_social_enter, container, false);
 
+        //Set image in image view
         ImageView social_icon = (ImageView) rootview.findViewById(R.id.social_media_icon);
         social_icon.setImageResource(icon);
 
@@ -47,15 +49,19 @@ public class FragmentSocialEnter extends Fragment {
             @Override
             public void onClick(View v) {
                 String username = inputUsername.getText().toString();
+
                 if (TextUtils.isEmpty(username)){
                     Toast.makeText(getContext(), "Enter username!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                //Insert username in database
                 FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(use.getUid());
                 System.out.println(username);
                 ref.child(social).setValue(username);
 
+                //The name of social that the user add
                 String cap = social.substring(0,1 ).toUpperCase() + social.substring(1);
 
                 Intent intent = new Intent();
@@ -64,11 +70,10 @@ public class FragmentSocialEnter extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 getActivity().startActivity(intent);
 
-
             }
         });
 
-        // Inflate the layout for this fragment
         return rootview;
+
     }
 }

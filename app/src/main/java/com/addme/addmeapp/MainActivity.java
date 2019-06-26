@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //get current user
-
         fullname = (TextView) findViewById(R.id.full_name);
         auth = FirebaseAuth.getInstance();
         FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //social list
+        //Social icons list
         final Map<String, Integer> social_icons = new HashMap<String, Integer>();
         social_icons.put("facebook", R.drawable.ic_facebook);
         social_icons.put("github", R.drawable.ic_github_sign);
@@ -139,7 +138,8 @@ public class MainActivity extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Retrieve social names
+
+                //Retrieve the social's username for the current user
                 Map<String, String> social_names = new HashMap<String, String>();
                 User u = dataSnapshot.getValue(User.class);
                 social_names.put("facebook", u.getFacebook());
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     parent.addView(EmptySocialList());
                 }
 
-                //Add every social item which exist in the list of social
+                //Add every social item which exist in the list of socials
                 if (empty == false){
                     for (String key :keys){
                         if(!social_names.get(key).isEmpty()) {
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //Successfully added the social
+        //This section display a textview, when an user adds successfully a social media.
         try {
             Intent intent = getIntent();
             String social = intent.getStringExtra("social");
@@ -318,6 +318,11 @@ public class MainActivity extends AppCompatActivity {
         return rl;
     }
 
+    /**
+     * This method convert dp to pixels.
+     * @param dp
+     * @return the pixels
+     */
     private int dpTopx(int dp){
         Context context = getApplicationContext();
         float d = context.getResources().getDisplayMetrics().density;
@@ -341,8 +346,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 }

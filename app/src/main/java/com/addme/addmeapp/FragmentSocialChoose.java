@@ -124,11 +124,7 @@ public class FragmentSocialChoose extends Fragment {
                     ConstructListOfAvailableSocial(available_social, social_icons, social_buttons);
                 }
 
-
-                System.out.println(available_social);
-
                 for(final String key : available_social) {
-                    System.out.println(key);
                     Button socialbutton = (Button) getView().findViewById(social_buttons.get(key));
                     socialbutton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -163,7 +159,7 @@ public class FragmentSocialChoose extends Fragment {
     }
 
     /**
-     * This method finds the available social media
+     * This method finds the available social media (That user hasn't add)
      * @param social_names
      * @return an array with values the name of socials that are available to add
      */
@@ -284,7 +280,7 @@ public class FragmentSocialChoose extends Fragment {
 
     /**
      * This method constructs the linear layout horizontally
-     * @return
+     * @return a LinearLayout
      */
     private LinearLayout HorizontalLinear(){
         LinearLayout lr = new LinearLayout(getContext());
