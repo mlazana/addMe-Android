@@ -58,9 +58,6 @@ public class Scan extends AppCompatActivity {
         });
 
 
-
-        TextView title = (TextView) findViewById(R.id.scanTitle);
-        title.setText("This is Scan");
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(1);

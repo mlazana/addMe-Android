@@ -16,16 +16,6 @@
         android:layout_height="match_parent">
 
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/scanTitle"
-            android:textSize="30sp"
-            android:layout_marginTop="80dp"
-            android:textAlignment="center"
-            />
-
         <!-- our toolbar -->
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
