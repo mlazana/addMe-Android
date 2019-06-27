@@ -12,6 +12,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.TabLayout;
@@ -20,42 +22,14 @@ import android.support.design.widget.TabLayout;
 
 public class Scan extends AppCompatActivity {
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private Button scanButton;
+    private Button myQrButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("My QR Code"));
-        tabLayout.addTab(tabLayout.newTab().setText("Scan"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        ScanFragments scanFragments = new ScanFragments(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(scanFragments);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
@@ -88,6 +62,30 @@ public class Scan extends AppCompatActivity {
                 return false;
             }
         });
+
+        scanButton = (Button) findViewById(R.id.scan_btn);
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openScanQrCode();
+            }
+        });
+
+        myQrButton = (Button) findViewById(R.id.myqr_btn);
+        myQrButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMyQrCode();
+            }
+        });
+    }
+    private void openMyQrCode() {
+        Intent intent = new Intent(this, MyQrCode.class);
+        startActivity(intent);
     }
 
+    private void openScanQrCode() {
+        Intent intent = new Intent(this, ScanQrCode.class);
+        startActivity(intent);
+    }
 }
