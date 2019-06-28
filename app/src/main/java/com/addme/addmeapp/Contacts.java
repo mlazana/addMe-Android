@@ -133,8 +133,11 @@ public class Contacts extends AppCompatActivity {
         System.out.println("This is what I am looking for" + Arrays.toString(finalfullnames));
         CustomContactList listAdapter = new
                 CustomContactList(Contacts.this, finalfullnames);
-        listView.setAdapter(listAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        System.out.println("mpika??");
+        System.out.println(listAdapter.getFinalfullnames().length);
+        ListView lv = (ListView) findViewById(R.id.listview);
+        lv.setAdapter(listAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {

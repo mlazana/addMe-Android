@@ -18,6 +18,11 @@ public class CustomContactList extends ArrayAdapter<String>{
         this.context = context;
         this.finalfullnames = finalfullnames;
     }
+
+    public String[] getFinalfullnames() {
+        return finalfullnames;
+    }
+
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
