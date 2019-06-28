@@ -28,7 +28,7 @@ public class CustomContactList extends ArrayAdapter<String>{
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.contactlist, null, true);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.image);
         txtTitle.setText(finalfullnames[position]);
         return rowView;
     }
