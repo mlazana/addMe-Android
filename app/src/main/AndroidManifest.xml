@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.addme.addmeapp">
 
-    <uses-permission android:name="android.permission.INTERNET"       />
-    <uses-permission android:name="android.permission.CAMERA"         />
-    <uses-feature    android:name="android.hardware.camera"           />
-    <uses-feature    android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanQrCode"></activity>
+        <activity android:name=".Connection"></activity>
+        <activity android:name=".ScanQrCode" />
         <activity android:name=".MyQrCode" />
         <activity
             android:name=".Settings"

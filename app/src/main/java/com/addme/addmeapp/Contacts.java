@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,7 +59,7 @@ public class Contacts extends AppCompatActivity {
                                 }
                             }
                         }
-                        createListAdapter(fullnames);
+                        createListAdapter(fullnames, finaluserIds);
 
                     }
 
@@ -107,8 +108,9 @@ public class Contacts extends AppCompatActivity {
      * This method creates my list adapter. Get as a parameter the fullnames as a list
      * and creates a ListView which contains each connection's fullname
      * @param fullnames
+     * @param finaluserIds
      */
-    private void createListAdapter(ArrayList<String> fullnames) {
+    private void createListAdapter(ArrayList<String> fullnames, final String[] finaluserIds) {
 
         //Convert the ArrayList into an Array as String[];
         final String[] finalfullnames = fullnames.toArray(new String[fullnames.size()]);
@@ -121,6 +123,10 @@ public class Contacts extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                Intent intent = new Intent(Contacts.this, Connection.class);
+                String userId = finaluserIds[position];
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
     }
