@@ -8,47 +8,43 @@
     tools:context=".MainActivity">
 
 
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
-        <TextView
-            android:id="@+id/full_name"
-            android:layout_width="315dp"
-            android:layout_height="90dp"
-            android:layout_marginBottom="343dp"
-            android:hint="HELLOOOOOOOO"
-            android:layout_marginTop="200dp"/>
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bottomBar">
+
+        </ListView>
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/bottomBar"
+
+
             android:layout_alignParentBottom="true">
 
 
-
-
             <android.support.design.widget.BottomNavigationView
+                android:id="@+id/bottomNavView_Bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/bottomNavView_Bar"
                 android:background="@drawable/white_orange_border_bottom"
                 app:menu="@menu/bottom_navigation_menu">
-
-
-
 
 
             </android.support.design.widget.BottomNavigationView>
 
 
         </RelativeLayout>
-
     </RelativeLayout>
-
 
 
 
