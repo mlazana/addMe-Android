@@ -1,13 +1,19 @@
 package com.addme.addmeapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +33,7 @@ import java.util.prefs.AbstractPreferences;
 public class Connection extends AppCompatActivity {
 
     public TextView fullname;
+    public Button button_back;
     public static String[] keys = {
             "facebook",
             "github",
@@ -48,6 +55,18 @@ public class Connection extends AppCompatActivity {
         // and get whatever type user account id is
 
         fullname = (TextView) findViewById(R.id.full_name);
+        button_back = (Button) findViewById(R.id.button_back);
+        button_back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Connection.this, Contacts.class);
+                startActivity(intent);
+
+            }
+
+        });
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
         DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("users").child(userId);
         setDataToView(ref1);
@@ -98,6 +117,36 @@ public class Connection extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        // Bottom Navigation
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.ic_profile:
+                        Intent intent = new Intent(Connection.this, MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.ic_scan:
+                        Intent intent1 = new Intent(Connection.this, Scan.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.ic_people:
+                        Intent intent2= new Intent(Connection.this, Contacts.class);
+                        startActivity(intent2);
+                        break;
+
+                }
+
+
+                return false;
             }
         });
 

@@ -11,6 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1ae11dd3-55fb-474a-869e-3d7a8ccbf2f4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_connection.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_connection.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +36,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="108" column="8" lean-forward="true" selection-start-line="108" selection-start-column="8" selection-end-line="108" selection-end-column="27" />
+            <state relative-caret-position="527">
+              <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="122" selection-end-column="11" />
+              <folding>
+                <element signature="e#3882#4118#0" expanded="true" />
+                <element signature="e#4117#4118#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -63,8 +68,8 @@
         <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_connection.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
+            <state relative-caret-position="263">
+              <caret line="124" column="44" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -72,8 +77,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Connection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="49" column="98" selection-start-line="49" selection-start-column="98" selection-end-line="49" selection-end-column="98" />
+            <state relative-caret-position="360">
+              <caret line="67" column="11" selection-start-line="67" selection-start-column="11" selection-end-line="67" selection-end-column="11" />
+              <folding>
+                <element signature="e#1849#2085#0" expanded="true" />
+                <element signature="e#2084#2085#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,7 +92,7 @@
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+              <caret line="16" column="47" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -142,11 +151,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>database</find>
-      <find>getInsta</find>
       <find>ion</find>
       <find>construct</find>
-      <find>fullname</find>
       <find>full_name</find>
       <find>userId</find>
       <find>Hello</find>
@@ -170,8 +176,11 @@
       <find>keys</find>
       <find>dpTopx</find>
       <find>OPA</find>
-      <find>social_media_list</find>
       <find>setDataToView</find>
+      <find>IM HER</find>
+      <find>social_media_list</find>
+      <find>fullname</find>
+      <find>set</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -183,7 +192,6 @@
         <option value="$PROJECT_DIR$/src/main/res/drawable/ic_settings.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/AccountActivity/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/connection.xml" />
         <option value="$PROJECT_DIR$/src/main/res/values/test.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/test.xml" />
@@ -192,8 +200,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/CustomContactList.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/contactlist.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/contacts.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_connection.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_connection.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Connection.java" />
       </list>
     </option>
@@ -372,7 +381,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="2560" height="1400" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" />
       <window_info id="Image Layers" order="1" />
@@ -384,7 +392,7 @@
       <window_info content_ui="combo" id="Project" order="7" visible="true" weight="0.13086714" />
       <window_info id="Captures" order="8" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="0" weight="0.32887492" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.32572776" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.32572776" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32951945" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" />
@@ -392,7 +400,7 @@
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.34382376" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
-      <window_info anchor="bottom" id="Run" order="9" weight="0.32887492" />
+      <window_info active="true" anchor="bottom" id="Run" order="9" visible="true" weight="0.32887492" />
       <window_info anchor="right" id="Assistant" order="0" weight="0.32975337" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
@@ -493,14 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/contactlist.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -509,11 +509,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/contactlist.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_connection.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
+        <state relative-caret-position="263">
+          <caret line="124" column="44" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -535,15 +543,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="108" column="8" lean-forward="true" selection-start-line="108" selection-start-column="8" selection-end-line="108" selection-end-column="27" />
+        <state relative-caret-position="527">
+          <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="122" selection-end-column="11" />
+          <folding>
+            <element signature="e#3882#4118#0" expanded="true" />
+            <element signature="e#4117#4118#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="49" column="98" selection-start-line="49" selection-start-column="98" selection-end-line="49" selection-end-column="98" />
+        <state relative-caret-position="360">
+          <caret line="67" column="11" selection-start-line="67" selection-start-column="11" selection-end-line="67" selection-end-column="11" />
+          <folding>
+            <element signature="e#1849#2085#0" expanded="true" />
+            <element signature="e#2084#2085#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

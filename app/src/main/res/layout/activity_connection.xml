@@ -122,6 +122,7 @@
             android:layout_marginTop="-65dp">
 
             <Button
+                android:id="@+id/button_back"
                 android:layout_width="match_parent"
                 android:background="@color/orange"
                 android:layout_height="match_parent"
