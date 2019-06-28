@@ -12,7 +12,6 @@
     <list default="true" id="1ae11dd3-55fb-474a-869e-3d7a8ccbf2f4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/CustomContactList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/CustomContactList.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,12 +45,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="177" selection-start-line="177" selection-end-line="177" />
+            <state relative-caret-position="485">
+              <caret line="137" column="39" selection-start-line="137" selection-start-column="39" selection-end-line="137" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1466#2807#0" expanded="true" />
-                <element signature="e#2806#2807#0" expanded="true" />
+                <element signature="e#1466#3387#0" expanded="true" />
+                <element signature="e#3386#3387#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/AccountActivity/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -70,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/FragmentSocialChoose.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="797">
-              <caret line="311" column="40" lean-forward="true" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="40" />
+              <caret line="311" column="40" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -145,11 +144,11 @@
       <find>Testing</find>
       <find>User</find>
       <find>userIds</find>
-      <find>broski</find>
       <find>ti fas</find>
       <find>onData</find>
       <find>keys</find>
       <find>onDat</find>
+      <find>broski</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -348,7 +347,7 @@
       <window_info content_ui="combo" id="Project" order="7" visible="true" weight="0.13126491" />
       <window_info id="Captures" order="8" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="0" weight="0.32887492" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.32887492" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.32887492" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32951945" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" />
@@ -471,25 +470,25 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/FragmentSocialChoose.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="797">
-          <caret line="311" column="40" lean-forward="true" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="40" />
+          <caret line="311" column="40" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/AccountActivity/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="177" selection-start-line="177" selection-end-line="177" />
+        <state relative-caret-position="485">
+          <caret line="137" column="39" selection-start-line="137" selection-start-column="39" selection-end-line="137" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1466#2807#0" expanded="true" />
-            <element signature="e#2806#2807#0" expanded="true" />
+            <element signature="e#1466#3387#0" expanded="true" />
+            <element signature="e#3386#3387#0" expanded="true" />
           </folding>
         </state>
       </provider>

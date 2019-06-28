@@ -50,43 +50,31 @@ public class Contacts extends AppCompatActivity {
                 final String[] finaluserIds = userIds.toArray(new String[userIds.size()]);
 
                 System.out.println("ti fash re broski" + Arrays.toString(finaluserIds));
-                String[] copy = new String[finaluserIds.length];
-                copy = finaluserIds;
 
-                CustomContactList listAdapter = new
-                        CustomContactList(Contacts.this, copy);
-                listView.setAdapter(listAdapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                final ArrayList<String> fullnames = new ArrayList<>();
+
+
+                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
+                myRef.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            for (String s: finaluserIds) {
+                                if (ds.getKey().equals(s)) {
+                                    // here I add the names to the string
+                                    fullnames.add(ds.child("fullname").getValue().toString());
+                                }
+                            }
+                        }
+                        createListAdapter(fullnames);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
                     }
                 });
-
-//                final ArrayList<String> fullnames = new ArrayList<>();
-//
-//
-//                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
-//                myRef.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                            for (String s: finaluserIds) {
-//                                if (ds.getKey().equals(s)) {
-//                                    // here I add the names to the string
-//                                    fullnames.add(ds.child("fullname").getValue().toString());
-//                                }
-//                            }
-//                        }
-//                        createListAdapter(fullnames);
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
 
 
             }
@@ -141,7 +129,17 @@ public class Contacts extends AppCompatActivity {
 
 
     private void createListAdapter(ArrayList<String> fullnames) {
-
+        final String[] finalfullnames = fullnames.toArray(new String[fullnames.size()]);
+        System.out.println("This is what I am looking for" + Arrays.toString(finalfullnames));
+        CustomContactList listAdapter = new
+                CustomContactList(Contacts.this, finalfullnames);
+        listView.setAdapter(listAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+            }
+        });
     }
 
     private void readData(final FirebaseCallBack firebaseCallBack ) {
