@@ -11,24 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.addme.addmeapp.AccountActivity.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 
 public class Contacts extends AppCompatActivity {
 
@@ -39,20 +32,19 @@ public class Contacts extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacts);
-        final ListView listView = (ListView) findViewById(R.id.listview);
         auth = FirebaseAuth.getInstance();
 
+        /**
+         * Parse the FireBase Realtime Database again, having the userIds
+         * and set the fullnames into an ArrayList
+         */
         readData(new FirebaseCallBack() {
             @Override
             public void onCallback(final ArrayList<String> userIds) {
                 Log.d("Start Testing", userIds.toString());
 
                 final String[] finaluserIds = userIds.toArray(new String[userIds.size()]);
-
-                System.out.println("ti fash re broski" + Arrays.toString(finaluserIds));
-
                 final ArrayList<String> fullnames = new ArrayList<>();
-
 
                 DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
                 myRef.addValueEventListener(new ValueEventListener() {
@@ -82,28 +74,12 @@ public class Contacts extends AppCompatActivity {
 
         });
 
-
-
-
-        //TODO: Each time it shows the last user
-        //TODO: There should be a list view that shows every connection
-
-        /**
-         * This ValueEventListener saves into an array, the userIDs
-         * corresponding to the connections of the  current user
-         **/
-
-
-
-
-
+        // Bottom Navigation View
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
 
-
-        // Bottom Navigation View
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -127,14 +103,18 @@ public class Contacts extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * This method creates my list adapter. Get as a parameter the fullnames as a list
+     * and creates a ListView which contains each connection's fullname
+     * @param fullnames
+     */
     private void createListAdapter(ArrayList<String> fullnames) {
+
+        //Convert the ArrayList into an Array as String[];
         final String[] finalfullnames = fullnames.toArray(new String[fullnames.size()]);
-        System.out.println("This is what I am looking for" + Arrays.toString(finalfullnames));
         CustomContactList listAdapter = new
                 CustomContactList(Contacts.this, finalfullnames);
-        System.out.println("mpika??");
-        System.out.println(listAdapter.getFinalfullnames().length);
+        // The listview should be setted here
         ListView lv = (ListView) findViewById(R.id.listview);
         lv.setAdapter(listAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -145,6 +125,10 @@ public class Contacts extends AppCompatActivity {
         });
     }
 
+    /**
+    * This method is implementing the Firebase Callback in order to collect
+     * all the userIds needed so as to find the full names of the connections
+     */
     private void readData(final FirebaseCallBack firebaseCallBack ) {
 
         FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
@@ -178,7 +162,9 @@ public class Contacts extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Set FirebaseCallBack interface
+     */
     private interface FirebaseCallBack {
         void onCallback(ArrayList<String> userIds);
     }
