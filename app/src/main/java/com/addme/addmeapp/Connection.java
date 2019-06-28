@@ -26,6 +26,7 @@ import java.util.prefs.AbstractPreferences;
 
 public class Connection extends AppCompatActivity {
 
+    public TextView fullname;
     public static String[] keys = {
             "facebook",
             "github",
@@ -46,7 +47,10 @@ public class Connection extends AppCompatActivity {
         userId = extras.getString("userId");
         // and get whatever type user account id is
 
+        fullname = (TextView) findViewById(R.id.full_name);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+        DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("users").child(userId);
+        setDataToView(ref1);
 
         //Social icons list
         final Map<String, Integer> social_icons = new HashMap<String, Integer>();
@@ -156,6 +160,20 @@ public class Connection extends AppCompatActivity {
         float d = context.getResources().getDisplayMetrics().density;
         int px = (int) (dp * d);
         return px;
+    }
+
+    private void setDataToView(DatabaseReference ref) {
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User u = dataSnapshot.getValue(User.class);
+                fullname.setText(u.getFullname());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
