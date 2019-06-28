@@ -33,70 +33,53 @@ import java.util.List;
 public class Contacts extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    ListView listview;
+    private ListView listView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacts);
-
         final ListView listView = (ListView) findViewById(R.id.listview);
         auth = FirebaseAuth.getInstance();
 
         readData(new FirebaseCallBack() {
             @Override
-            public void onCallback(ArrayList<String> userIds) {
+            public void onCallback(final ArrayList<String> userIds) {
                 Log.d("Start Testing", userIds.toString());
 
                 final String[] finaluserIds = userIds.toArray(new String[userIds.size()]);
 
+                System.out.println("ti fash re broski" + Arrays.toString(finaluserIds));
+                String[] copy = new String[finaluserIds.length];
+                copy = finaluserIds;
 
                 CustomContactList listAdapter = new
-                        CustomContactList(Contacts.this, finaluserIds);
+                        CustomContactList(Contacts.this, copy);
                 listView.setAdapter(listAdapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-                        Toast.makeText(Contacts.this, "You Clicked at " +finaluserIds[+ position], Toast.LENGTH_SHORT).show();
                     }
                 });
 
-
-//                FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
-//                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users").child(use.getUid());
+//                final ArrayList<String> fullnames = new ArrayList<>();
 //
+//
+//                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
 //                myRef.addValueEventListener(new ValueEventListener() {
 //                    @Override
 //                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                            String userId = ds.getKey();
-//
-//                            DatabaseReference connection = FirebaseDatabase.getInstance().getReference("users").child(userId);
-//                            connection.addValueEventListener(new ValueEventListener() {
-//                                @Override
-//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                    String fullname;
-//                                    User u = dataSnapshot.getValue(User.class);
-//                                    fullname = u.getFullname();
-//
-//                                    fullNames.add(fullname);
-//                                    Log.v("Edw eisai", fullNames.toString());
-//
-//                                    createListView(fullNames);
-//
+//                            for (String s: finaluserIds) {
+//                                if (ds.getKey().equals(s)) {
+//                                    // here I add the names to the string
+//                                    fullnames.add(ds.child("fullname").getValue().toString());
 //                                }
-//
-//
-//                                @Override
-//                                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                                }
-//
-//                            });
-//                            Log.d("userId", userId);
-//
+//                            }
 //                        }
+//                        createListAdapter(fullnames);
+//
 //                    }
 //
 //                    @Override
@@ -121,47 +104,6 @@ public class Contacts extends AppCompatActivity {
          * This ValueEventListener saves into an array, the userIDs
          * corresponding to the connections of the  current user
          **/
-
-
-
-
-
-
-
-        //get the data for the current user
-
-
-//        ListView myListView = (ListView) findViewById(R.id.contact_list);
-
-
-//
-//        // Read from the database
-//        myRef1.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                Map<String, Object> value = (Map<String, Object>) dataSnapshot.getValue();
-//
-//                for (String "userId": value.keySet()) {
-//
-//                    Map<String, Object> currentConnection = (Map<String, Object>) value.get("userId");
-//                }
-//                Log.d("ion", "Value is: " + value);
-//                String id = (String) value.get("userId");
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w("ion", "Failed to read value.", error.toException());
-//            }
-//        });
-
-
-
-
 
 
 
@@ -196,17 +138,11 @@ public class Contacts extends AppCompatActivity {
             }
         });
     }
-//    public void createListView(ArrayList<String> fullNames) {
-//
-//
-//        listview.setAdapter(new CustomContactlist(this, fullNames));
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//            }
-//        });
-//    }
+
+
+    private void createListAdapter(ArrayList<String> fullnames) {
+
+    }
 
     private void readData(final FirebaseCallBack firebaseCallBack ) {
 
@@ -226,10 +162,7 @@ public class Contacts extends AppCompatActivity {
                     userIds.add(userId);
 
                 }
-
                 firebaseCallBack.onCallback(userIds);
-
-
 
             }
 
@@ -243,6 +176,7 @@ public class Contacts extends AppCompatActivity {
         myRef1.addListenerForSingleValueEvent(valueEventListener);
 
     }
+
 
     private interface FirebaseCallBack {
         void onCallback(ArrayList<String> userIds);

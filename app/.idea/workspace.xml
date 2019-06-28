@@ -10,10 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ae11dd3-55fb-474a-869e-3d7a8ccbf2f4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/contacts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/contacts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/CustomContactList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/CustomContactList.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,17 +35,42 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="165" column="41" selection-start-line="165" selection-start-column="37" selection-end-line="165" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="54" column="69" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
+            <state relative-caret-position="621">
+              <caret line="177" selection-start-line="177" selection-end-line="177" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1453#5410#0" expanded="true" />
-                <element signature="e#1978#2356#0" expanded="true" />
-                <element signature="e#2355#2356#0" expanded="true" />
-                <element signature="e#5409#5410#0" expanded="true" />
+                <element signature="e#1466#2807#0" expanded="true" />
+                <element signature="e#2806#2807#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/AccountActivity/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/FragmentSocialChoose.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="797">
+              <caret line="311" column="40" lean-forward="true" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -61,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/CustomContactList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+            <state relative-caret-position="270">
+              <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,7 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>view</find>
       <find>use</find>
       <find>auth</find>
       <find>userID</find>
@@ -119,6 +142,14 @@
       <find>ElAA</find>
       <find>positi</find>
       <find>edw eisai</find>
+      <find>Testing</find>
+      <find>User</find>
+      <find>userIds</find>
+      <find>broski</find>
+      <find>ti fas</find>
+      <find>onData</find>
+      <find>keys</find>
+      <find>onDat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -137,8 +168,9 @@
         <option value="$PROJECT_DIR$/src/main/res/layout/contacts.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/ContactListView.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/contactlist.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/CustomContactList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/FragmentSocialChoose.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java" />
       </list>
     </option>
   </component>
@@ -172,6 +204,13 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="addmeapp" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="addmeapp" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="AccountActivity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="app" type="1abcf292:AndroidViewProjectNode" />
@@ -298,7 +337,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="2560" height="1400" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" />
       <window_info id="Image Layers" order="1" />
@@ -336,32 +374,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/AccountActivity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="72" column="74" selection-start-line="72" selection-start-column="74" selection-end-line="72" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/values/test.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/test.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1152">
-          <caret line="323" column="25" selection-start-line="323" selection-start-column="25" selection-end-line="323" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_social_choose.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/FragmentSocialChoose.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="109" column="49" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="49" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/FragmentSocialEnter.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -401,18 +418,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/contacts.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/ContactListView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="41" column="1" lean-forward="true" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/AccountActivity/SignupActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="165" column="41" selection-start-line="165" selection-start-column="37" selection-end-line="165" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/CustomContactList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -427,26 +460,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/contacts.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="54" column="69" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1453#5410#0" expanded="true" />
-            <element signature="e#1978#2356#0" expanded="true" />
-            <element signature="e#2355#2356#0" expanded="true" />
-            <element signature="e#5409#5410#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="240">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/CustomContactList.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/FragmentSocialChoose.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        <state relative-caret-position="797">
+          <caret line="311" column="40" lean-forward="true" selection-start-line="311" selection-start-column="40" selection-end-line="311" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/AccountActivity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/addme/addmeapp/Contacts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="177" selection-start-line="177" selection-end-line="177" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1466#2807#0" expanded="true" />
+            <element signature="e#2806#2807#0" expanded="true" />
           </folding>
         </state>
       </provider>

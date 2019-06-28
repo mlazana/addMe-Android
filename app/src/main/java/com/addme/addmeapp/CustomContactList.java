@@ -11,12 +11,12 @@ import android.widget.TextView;
 public class CustomContactList extends ArrayAdapter<String>{
 
     private final Activity context;
-    private final String[] finaluserId;
+    private final String[] finalfullnames;
 
-    public CustomContactList(Activity context, String[] finaluserId) {
-        super(context, R.layout.contactlist, finaluserId);
+    public CustomContactList(Activity context, String[] finalfullnames) {
+        super(context, R.layout.contactlist, finalfullnames);
         this.context = context;
-        this.finaluserId = finaluserId;
+        this.finalfullnames = finalfullnames;
     }
     @Override
     public View getView(int position, View view, ViewGroup parent) {
@@ -24,7 +24,7 @@ public class CustomContactList extends ArrayAdapter<String>{
         View rowView= inflater.inflate(R.layout.contactlist, null, true);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
-        txtTitle.setText(finaluserId[position]);
+        txtTitle.setText(finalfullnames[position]);
         return rowView;
     }
 }
