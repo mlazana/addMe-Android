@@ -1,17 +1,33 @@
 package com.addme.addmeapp;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+
+import com.addme.addmeapp.AccountActivity.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.WriterException;
 
 import androidmads.library.qrgenearator.QRGContents;
@@ -27,42 +43,53 @@ public class MyQrCode extends AppCompatActivity {
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
 
+    private TextView fullname;
+
+    private FirebaseAuth auth;
+    String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_qr_code);
 
+        // Get userID from firebase
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        userID = currentFirebaseUser.getUid();
+
         qrimg = (ImageView) findViewById(R.id.qrCode);
-        edttxt = (EditText) findViewById(R.id.editText);
 
-        start = (Button) findViewById(R.id.qrGenerateBtn);
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                inputValue = edttxt.getText().toString().trim();
-                if (inputValue.length() > 0){
-                    WindowManager manager = (WindowManager)getSystemService(WINDOW_SERVICE);
-                    Display display = manager.getDefaultDisplay();
-                    Point point = new Point();
-                    display.getSize(point);
-                    int width = point.x;
-                    int height = point.y;
-                    int smallerdimension = width < height ? width:height;
-                    smallerdimension = smallerdimension*3/4;
-                    qrgEncoder = new QRGEncoder(inputValue,null, QRGContents.Type.TEXT,
-                            smallerdimension);
-                    try{
-                        bitmap = qrgEncoder.encodeAsBitmap();
-                        qrimg.setImageBitmap(bitmap);
+        inputValue = userID;
 
-                    }catch (WriterException e){
-                        Log.v(TAG,e.toString());
-                    }
-                }else{
-                    edttxt.setError("Required");
-                }
+        if (inputValue.length() > 0){
+
+            WindowManager manager = (WindowManager)getSystemService(WINDOW_SERVICE);
+            Display display = manager.getDefaultDisplay();
+            Point point = new Point();
+            display.getSize(point);
+
+            int width = point.x;
+            int height = point.y;
+            int smallerdimension = width < height ? width:height;
+
+            smallerdimension = smallerdimension*3/4;
+            qrgEncoder = new QRGEncoder(inputValue,null, QRGContents.Type.TEXT,
+                                       smallerdimension);
+
+            try{
+                bitmap = qrgEncoder.encodeAsBitmap();
+                qrimg.setImageBitmap(bitmap);
+
+            }catch (WriterException e){
+                Log.v(TAG,e.toString());
             }
-        });
+
+        }else{
+            edttxt.setError("Required");
+        }
+
+
     }
+
 }
