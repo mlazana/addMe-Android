@@ -1,6 +1,8 @@
 package com.addme.addmeapp;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -23,10 +25,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Set;
+
 public class Settings extends AppCompatActivity {
 
-    private Button btnChangePassword, btnRemoveUser,
-            changePassword, remove, signOut;
+    private Button btnChangePassword, btn_back, btnRemoveUser,
+            changePassword, signOut;
 
     private TextView email, oldEmail;
 
@@ -64,7 +68,6 @@ public class Settings extends AppCompatActivity {
 
                 }
 
-
                 return false;
             }
         });
@@ -90,56 +93,59 @@ public class Settings extends AppCompatActivity {
             }
         };
 
-
+        //Find buttons in View
         btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
-
         signOut = (Button) findViewById(R.id.sign_out);
-
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         btnChangePassword = (Button) findViewById(R.id.change_password_button);
-
-        btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
-
+        btn_back = (Button) findViewById(R.id.back);
         changePassword = (Button) findViewById(R.id.changePass);
-
-        remove = (Button) findViewById(R.id.remove);
         signOut = (Button) findViewById(R.id.sign_out);
-
         oldEmail = (EditText) findViewById(R.id.old_email);
-
         password = (EditText) findViewById(R.id.password);
         newPassword = (EditText) findViewById(R.id.newPassword);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+
+        // Set Visibilities
         oldEmail.setVisibility(View.GONE);
-
         password.setVisibility(View.GONE);
         newPassword.setVisibility(View.GONE);
-
         changePassword.setVisibility(View.GONE);
+        btn_back.setVisibility(View.GONE);
 
-        remove.setVisibility(View.GONE);
-
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
         }
 
-
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 oldEmail.setVisibility(View.GONE);
+                btn_back.setVisibility(View.VISIBLE);
 
-                password.setVisibility(View.GONE);
+                password.setVisibility(View.VISIBLE);
                 newPassword.setVisibility(View.VISIBLE);
 
                 changePassword.setVisibility(View.VISIBLE);
 
-                remove.setVisibility(View.GONE);
             }
         });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                oldEmail.setVisibility(View.GONE);
+                btn_back.setVisibility(View.GONE);
+
+                password.setVisibility(View.GONE);
+                newPassword.setVisibility(View.GONE);
+                changePassword.setVisibility(View.GONE);
+
+            }
+        });
+
 
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,29 +178,65 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+
         btnRemoveUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                if (user != null) {
-                    user.delete()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(Settings.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(Settings.this, SignupActivity.class));
-                                        finish();
-                                        progressBar.setVisibility(View.GONE);
-                                    } else {
-                                        Toast.makeText(Settings.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
-                                        progressBar.setVisibility(View.GONE);
-                                    }
+                // Build an AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
+
+                // Set a title for alert dialog
+                builder.setTitle("Warning!");
+
+                // Ask the final question
+                builder.setMessage("If you delete the account, you data can not be restored. Are you sure you want to delete it?");
+
+                // Set click listener for alert dialog buttons
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                // User clicked the Yes button
+                                if (user != null) {
+                                    user.delete()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(Settings.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
+                                                        startActivity(new Intent(Settings.this, SignupActivity.class));
+                                                        finish();
+                                                        progressBar.setVisibility(View.GONE);
+                                                    } else {
+                                                        Toast.makeText(Settings.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
+                                                        progressBar.setVisibility(View.GONE);
+                                                    }
+                                                }
+                                            });
                                 }
-                            });
-                }
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                // User clicked the No button
+                                break;
+                        }
+                    }
+                };
+
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Yes", dialogClickListener);
+
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("No",dialogClickListener);
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
             }
         });
+
 
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override

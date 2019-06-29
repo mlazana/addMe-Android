@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#EF6134</color>
     <color name="colorPrimaryDark">#555959</color>
-    <color name="colorAccent">#EF6134</color>
+    <color name="colorAccent">#ffffff</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
@@ -24,4 +24,11 @@
     <color name="btn_login">#26ae90</color>
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
+
+    <!-- MyProfile color -->
+    <color name="blue_photo_name">#7CBAAB</color>
+    <color name="conn">#ADADAD</color>
+    <color name="inside_color">#E9E9E9</color>
+    <color name="color_text_social">#747474</color>
+    <color name="color_input">#AFAFAF</color>
 </resources>

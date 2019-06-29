@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Scan">
+
+
 
 
 
@@ -13,14 +15,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/scanTitle"
-            android:textSize="30sp"
-            android:layout_marginTop="80dp"
-            android:textAlignment="center"
-            />
+        <Button
+            android:id="@+id/scan_btn"
+            android:layout_width="235dp"
+            android:layout_height="143dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginRight="46dp"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:text="scan"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="211dp" />
+
+        <Button
+            android:id="@+id/myqr_btn"
+            android:layout_width="235dp"
+            android:layout_height="143dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="350dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginRight="46dp"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:text="my qr"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="211dp" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,11 +60,7 @@
 
 
             </android.support.design.widget.BottomNavigationView>
-
-
         </RelativeLayout>
-
     </RelativeLayout>
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
 
