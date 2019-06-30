@@ -62,11 +62,9 @@ public class MyQrCode extends AppCompatActivity {
             }
         });
 
-
         // Get userID from firebase
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         userID = currentFirebaseUser.getUid();
-
 
         qrimg = (ImageView) findViewById(R.id.qrCode);
 
