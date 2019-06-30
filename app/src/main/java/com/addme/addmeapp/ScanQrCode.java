@@ -52,6 +52,12 @@ public class ScanQrCode extends AppCompatActivity implements ZXingScannerView.Re
         ActivityCompat.requestPermissions(this, new String[]{CAMERA}, REQUEST_CAMERA);
     }
 
+    /**
+     * This function is checking the permission of the camera API.
+     * @param requestCode
+     * @param permission
+     * @param grantResults
+     */
     public void onRequestPermissionsResult(int requestCode, String permission[],int grantResults[]){
         switch (requestCode){
             case REQUEST_CAMERA:
@@ -77,7 +83,6 @@ public class ScanQrCode extends AppCompatActivity implements ZXingScannerView.Re
                 }
                 break;
         }
-
     }
     @Override
     public void onResume(){
