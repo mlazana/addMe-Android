@@ -31,7 +31,7 @@ public class Scan extends AppCompatActivity {
         setContentView(R.layout.scan);
 
 
-
+        //Bottom Navigation
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(1);
@@ -57,12 +57,11 @@ public class Scan extends AppCompatActivity {
                         break;
 
                 }
-
-
                 return false;
             }
         });
 
+        // QR code scanner button
         scanButton = (Button) findViewById(R.id.scan_btn);
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +70,7 @@ public class Scan extends AppCompatActivity {
             }
         });
 
+        // User's QR code button
         myQrButton = (Button) findViewById(R.id.myqr_btn);
         myQrButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +79,7 @@ public class Scan extends AppCompatActivity {
             }
         });
     }
+
     private void openMyQrCode() {
         Intent intent = new Intent(this, MyQrCode.class);
         startActivity(intent);
