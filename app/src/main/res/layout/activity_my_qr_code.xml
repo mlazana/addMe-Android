@@ -8,6 +8,24 @@
     tools:context=".MyQrCode">
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="98dp"
+            android:layout_height="85dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/ic_person_black_24dp"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width="79dp"
+            tools:ignore="VectorDrawableCompat"
+            android:foregroundGravity="center"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="18dp"
@@ -15,20 +33,45 @@
     android:layout_marginRight="18dp"
     android:layout_marginBottom="20dp"
     android:background="@drawable/myqr_rectangle">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="520dp"
+            android:text="Scan my QR code"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/myQR"
-            android:orientation="vertical"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/myQR"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    </ScrollView>
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_btn"
+            android:padding="10dp"
+            android:text="back "
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:layout_marginTop="400dp"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"/>
 
     </RelativeLayout>
 
@@ -37,7 +80,7 @@
         android:layout_height="200dp"
         android:id="@+id/qrCode"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250sp" />
+        android:layout_marginTop="200sp" />
 
 
 </RelativeLayout>
