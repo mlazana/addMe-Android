@@ -41,12 +41,13 @@ public class MyQrCode extends AppCompatActivity {
     private Button start;
     private ImageView qrimg;
     Bitmap bitmap;
+
     QRGEncoder qrgEncoder;
-
-    private TextView fullname;
-
-    private FirebaseAuth auth;
     String userID;
+
+    private Button back_btn;
+
+
 
 
     @Override
@@ -54,9 +55,20 @@ public class MyQrCode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_qr_code);
 
+        // Back button
+        back_btn = (Button) findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openScanActivity();
+            }
+        });
+
+
         // Get userID from firebase
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         userID = currentFirebaseUser.getUid();
+
 
         qrimg = (ImageView) findViewById(R.id.qrCode);
 
@@ -90,6 +102,11 @@ public class MyQrCode extends AppCompatActivity {
         }
 
 
+    }
+
+    private void openScanActivity() {
+        Intent intent = new Intent(this, Scan.class);
+        startActivity(intent);
     }
 
 }
