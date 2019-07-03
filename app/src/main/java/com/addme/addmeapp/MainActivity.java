@@ -4,6 +4,7 @@ package com.addme.addmeapp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton settings;
     private TextView fullname;
     private FirebaseAuth auth;
-    private TextView facebook;
     private FloatingActionButton addButton;
+    private TextView number_of_connections;
     public static String[] keys = {
             "facebook",
             "github",
@@ -162,6 +163,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //Retrieve the number of connections
+        number_of_connections = (TextView) findViewById(R.id.connections);
+        DatabaseReference ref2 = ref.child("connections");
+        getNumberOfCon(ref2);
+
 
         //Social Choose Fragment
         addButton = (FloatingActionButton) findViewById(R.id.AddActionButton);
@@ -330,5 +337,28 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void getNumberOfCon (DatabaseReference ref2){
+
+        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long x = dataSnapshot.getChildrenCount();
+                String text = "Connection";
+
+                if (x == 1){
+                    number_of_connections.setText(x + " " + text);
+                } else {
+                    number_of_connections.setText(x + " " + text + "s");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }
