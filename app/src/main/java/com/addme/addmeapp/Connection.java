@@ -34,6 +34,7 @@ public class Connection extends AppCompatActivity {
 
     public TextView fullname;
     public Button button_back;
+    public TextView number_of_connections;
     public static String[] keys = {
             "facebook",
             "github",
@@ -119,6 +120,11 @@ public class Connection extends AppCompatActivity {
 
             }
         });
+
+        //Retrieve the number of connections
+        number_of_connections = (TextView) findViewById(R.id.connections);
+        DatabaseReference ref2 = ref.child("connections");
+        getNumberOfCon(ref2);
 
         // Bottom Navigation
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
@@ -223,6 +229,33 @@ public class Connection extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * This method finds the number of Connections
+     * @param ref2
+     */
+    private void getNumberOfCon (DatabaseReference ref2){
+
+        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long x = dataSnapshot.getChildrenCount();
+                String text = "Connection";
+
+                if (x == 1){
+                    number_of_connections.setText(x + " " + text);
+                } else {
+                    number_of_connections.setText(x + " " + text + "s");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 
