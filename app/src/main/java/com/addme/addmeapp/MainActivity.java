@@ -339,6 +339,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method finds the number of Connections
+     * @param ref2
+     */
     private void getNumberOfCon (DatabaseReference ref2){
 
         ref2.addListenerForSingleValueEvent(new ValueEventListener() {
