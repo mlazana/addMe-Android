@@ -4,6 +4,7 @@ package com.addme.addmeapp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,12 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
             "twitter",
             "viber",
             "whatsapp"
+    };
+
+    private final Handler handler = new Handler();
+    private final Runnable runnable = new Runnable() {
+        public void run() {
+
+        }
     };
 
     @Override
@@ -119,6 +130,16 @@ public class MainActivity extends AppCompatActivity {
         social_icons.put("viber", R.drawable.ic_viber);
         social_icons.put("whatsapp", R.drawable.ic_whatsapp);
 
+        //Social for edit
+        final Map<String, Integer> social_edit = new HashMap<String, Integer>();
+        social_edit.put("facebook", R.id.facebook_edit);
+        social_edit.put("github", R.id.github_edit);
+        social_edit.put("instagram", R.id.instagram_edit);
+        social_edit.put("snapchat", R.id.snapchat_edit);
+        social_edit.put("twitter", R.id.twitter_edit);
+        social_edit.put("viber", R.id.viber_edit);
+        social_edit.put("whatsapp", R.id.whatsapp_edit);
+
         //Open database
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -146,15 +167,36 @@ public class MainActivity extends AppCompatActivity {
                     parent.addView(EmptySocialList());
                 }
 
+                ArrayList<String> available_social = new ArrayList<String>();
+
                 //Add every social item which exist in the list of socials
                 if (empty == false){
                     for (String key :keys){
                         if(!social_names.get(key).isEmpty()) {
-                            RelativeLayout social_item = ConstructSocialItem(social_names.get(key), social_icons.get(key));
+                            RelativeLayout social_item = ConstructSocialItem(social_names.get(key), social_icons.get(key), social_edit.get(key));
                             parent.addView(social_item);
+                            available_social.add(key);
                         }
                     }
+                }
 
+                //Shows for every social item popupmenu with edit and delete
+                for(final String key : available_social) {
+                    final RelativeLayout rel_edit = (RelativeLayout) findViewById(social_edit.get(key));
+                    rel_edit.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+
+                            PopupMenu popupedit = new PopupMenu(MainActivity.this, rel_edit);
+                            popupedit.getMenuInflater().inflate(R.menu.popup_menu_myprof, popupedit.getMenu());
+
+                            //I should enter the action, what the programm do when I touch
+
+                            popupedit.show();
+
+                            return false;
+                        }
+                    });
                 }
 
             }
@@ -224,9 +266,10 @@ public class MainActivity extends AppCompatActivity {
      * This method constructs a layout for every item about every social media
      * @param name the name for the social media
      * @param social_icon the social media icon
+     * @param social_id the id for edit
      * @return the relative layout
      */
-    private RelativeLayout ConstructSocialItem(String name, int social_icon){
+    private RelativeLayout ConstructSocialItem(String name, int social_icon, int social_id){
 
         //RelativeLayout
         RelativeLayout social_media = new RelativeLayout(getApplicationContext());
@@ -235,6 +278,10 @@ public class MainActivity extends AppCompatActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         rlparams.setMargins(dpTopx(20),dpTopx(15),dpTopx(20),0 );
+
+        social_media.setClickable(true);
+        social_media.setId(social_id);
+
         social_media.setLayoutParams(rlparams);
 
         //Image View
