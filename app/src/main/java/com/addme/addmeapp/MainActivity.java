@@ -2,7 +2,9 @@ package com.addme.addmeapp;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.provider.ContactsContract;
@@ -10,11 +12,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.view.Menu;
@@ -24,6 +28,7 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.addme.addmeapp.AccountActivity.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -101,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
         //get the data for the current user
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(use.getUid());
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(use.getUid());
         setDataToView(ref);
 
 
@@ -190,7 +195,36 @@ public class MainActivity extends AppCompatActivity {
                             PopupMenu popupedit = new PopupMenu(MainActivity.this, rel_edit);
                             popupedit.getMenuInflater().inflate(R.menu.popup_menu_myprof, popupedit.getMenu());
 
-                            //I should enter the action, what the programm do when I touch
+                            popupedit.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    if (item.getItemId() == R.id.delete_social){
+                                        DialogInterface.OnClickListener delete_dialog = new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                switch (which) {
+                                                    case DialogInterface.BUTTON_POSITIVE:
+                                                        DeleteSocial(key, ref);
+                                                        break;
+                                                    case DialogInterface.BUTTON_NEGATIVE:
+                                                        System.out.println("oxi");
+                                                        break;
+                                                }
+                                            }
+                                        };
+
+                                        //Build Dialog box for delete confirmation
+                                        AlertDialog.Builder delete_popup = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogThemeDelete);
+                                        delete_popup.setTitle("Warning!");
+                                        delete_popup.setMessage("You are going to delete a social media. Are you sure you want to delete it?");
+                                        delete_popup.setPositiveButton("Yes", delete_dialog);
+                                        delete_popup.setNegativeButton("No", delete_dialog);
+                                        delete_popup.show();
+
+                                    }
+                                    return false;
+                                }
+                            });
 
                             popupedit.show();
 
@@ -198,6 +232,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
+
+
+
 
             }
             @Override
@@ -218,7 +255,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 FragmentSocialChoose fragment = new FragmentSocialChoose();
@@ -229,19 +265,43 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
-        //This section display a textview, when an user adds successfully a social media.
+        //This section displays messages from Fragments and Activity
         try {
             Intent intent = getIntent();
-            String social = intent.getStringExtra("social");
-            TextView suc_add_social = findViewById(R.id.succesful_add);
-            if (!social.isEmpty()) {
-                suc_add_social.setText("Congratulations! You just added your " + social + " account.");
+            String social;
+            //This section displays a textview, when an user adds successfully a social media.
+            if (intent.hasExtra("social")) {
+                social = intent.getStringExtra("social");
+                TextView suc_add_social = findViewById(R.id.succesful_add);
+                if (!social.isEmpty()) {
+                    suc_add_social.setText("Congratulations! You just added your " + social + " account.");
+                }
+            }
+
+            //This section displays a toast when a user deletes a social media
+            if (intent.hasExtra("social_delete")){
+                social = intent.getStringExtra("social_delete");
+                social = social.substring(0, 1).toUpperCase() + social.substring(1);
+                String text = "You successfully delete your " + social + " account!";
+                Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
             }
         } catch (Exception e){
 
         }
 
+    }
+
+    /**
+     * This method deletes the given social
+     * @param social
+     * @param ref
+     */
+    private void DeleteSocial (String social, DatabaseReference ref){
+        ref.child(social).setValue("");
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("social_delete", social);
+        startActivity(intent);
     }
 
     /**
