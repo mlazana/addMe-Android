@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 //Retrieve the social's username for the current user
-                Map<String, String> social_names = new HashMap<String, String>();
+                final Map<String, String> social_names = new HashMap<String, String>();
                 User u = dataSnapshot.getValue(User.class);
                 social_names.put("facebook", u.getFacebook());
                 social_names.put("github", u.getGithub());
@@ -207,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
                                                         DeleteSocial(key, ref);
                                                         break;
                                                     case DialogInterface.BUTTON_NEGATIVE:
-                                                        System.out.println("oxi");
                                                         break;
                                                 }
                                             }
@@ -222,6 +221,24 @@ public class MainActivity extends AppCompatActivity {
                                         delete_popup.show();
 
                                     }
+
+                                    if (item.getItemId() == R.id.edit_social){
+                                        System.out.println("mpika edo");
+                                        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                                        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
+                                        Bundle parameters = new Bundle();
+                                        parameters.putString("social", key);
+                                        parameters.putString("old_social_uname", social_names.get(key));
+                                        parameters.putInt("social_icon", social_icons.get(key));
+
+                                        FragmentSocialEdit fragment = new FragmentSocialEdit();
+                                        fragment.setArguments(parameters);
+                                        fragmentTransaction.add(R.id.fragment_container, fragment);
+                                        fragmentTransaction.addToBackStack(null);
+                                        fragmentTransaction.commit();
+                                    }
+
                                     return false;
                                 }
                             });
@@ -278,11 +295,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            String text;
+
             //This section displays a toast when a user deletes a social media
             if (intent.hasExtra("social_delete")){
                 social = intent.getStringExtra("social_delete");
                 social = social.substring(0, 1).toUpperCase() + social.substring(1);
-                String text = "You successfully delete your " + social + " account!";
+                text = "You successfully delete your " + social + " account!";
+                Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
+            }
+
+            //This section displays a toast when a user edits a social media
+            if (intent.hasExtra("social_edit")) {
+                social = intent.getStringExtra("social_edit");
+                text = "You successfully edit your " + social + " account!";
                 Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
             }
         } catch (Exception e){
