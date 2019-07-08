@@ -80,7 +80,6 @@ public class FragmentSocialEdit extends Fragment {
                     };
 
                     //Build Dialog box if the user enters the same username
-                    //Build Dialog box for delete confirmation
                     AlertDialog.Builder edit_popup = new AlertDialog.Builder(getActivity(), R.style.AlertDialogThemeDelete);
                     edit_popup.setTitle("Warning!");
                     edit_popup.setMessage("You have enter the same Username. Do you want to continue?");

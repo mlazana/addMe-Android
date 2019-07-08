@@ -198,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
                             popupedit.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
+                                    //This section runs if the user hits delete
                                     if (item.getItemId() == R.id.delete_social){
                                         DialogInterface.OnClickListener delete_dialog = new DialogInterface.OnClickListener() {
                                             @Override
@@ -221,12 +222,12 @@ public class MainActivity extends AppCompatActivity {
                                         delete_popup.show();
 
                                     }
-
+                                    //This section runs if the user hits edit
                                     if (item.getItemId() == R.id.edit_social){
-                                        System.out.println("mpika edo");
+                                        //Social Edit Fragment
                                         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
                                         android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
-
+                                        //Send parameters
                                         Bundle parameters = new Bundle();
                                         parameters.putString("social", key);
                                         parameters.putString("old_social_uname", social_names.get(key));
