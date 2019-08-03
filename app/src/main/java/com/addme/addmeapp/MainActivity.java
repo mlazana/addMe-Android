@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                                         };
 
                                         //Build Dialog box for delete confirmation
-                                        AlertDialog.Builder delete_popup = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogThemeDelete);
+                                        AlertDialog.Builder delete_popup = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogTheme);
                                         delete_popup.setTitle("Warning!");
                                         delete_popup.setMessage("You are going to delete a social media. Are you sure you want to delete it?");
                                         delete_popup.setPositiveButton("Yes", delete_dialog);

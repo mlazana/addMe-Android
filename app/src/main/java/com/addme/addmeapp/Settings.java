@@ -183,7 +183,7 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Build an AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this, R.style.AlertDialogTheme);
 
                 // Set a title for alert dialog
                 builder.setTitle("Warning!");
