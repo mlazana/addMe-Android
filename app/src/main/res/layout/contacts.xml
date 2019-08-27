@@ -10,6 +10,7 @@
 
     <TextView
         android:id="@+id/connections"
+        android:fontFamily="sans-serif-light"
         android:layout_width="396dp"
         android:layout_height="172dp"
         android:layout_above="@id/listview"
