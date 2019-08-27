@@ -51,9 +51,14 @@ public class Contacts extends AppCompatActivity {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //I use the above line for not showing the current user (myself) in contacts)
+                        FirebaseUser u = FirebaseAuth.getInstance().getCurrentUser();
+
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             for (String s: finaluserIds) {
-                                if (ds.getKey().equals(s)) {
+
+                                //In the above line we do not add (myself) in contacts
+                                if (ds.getKey().equals(s) && !s.equals(u.getUid())) {
                                     // here I add the names to the string
                                     fullnames.add(ds.child("fullname").getValue().toString());
                                 }

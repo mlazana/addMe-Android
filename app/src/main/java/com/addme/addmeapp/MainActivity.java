@@ -483,6 +483,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 long x = dataSnapshot.getChildrenCount();
+                //I remove one connection, the dummy connection which is the current user
+                x = x - 1;
                 String text = "Connection";
 
                 if (x == 1){

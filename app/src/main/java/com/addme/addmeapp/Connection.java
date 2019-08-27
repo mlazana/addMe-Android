@@ -243,6 +243,9 @@ public class Connection extends AppCompatActivity {
                 long x = dataSnapshot.getChildrenCount();
                 String text = "Connection";
 
+                //I remove one connection, the dummy connection which is the current user
+                x = x - 1;
+
                 if (x == 1){
                     number_of_connections.setText(x + " " + text);
                 } else {
