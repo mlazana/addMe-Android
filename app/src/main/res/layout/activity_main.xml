@@ -36,8 +36,8 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="28dp"
                 android:src="@drawable/ic_person_black_24dp"
-                app:civ_border_color="@color/blue_photo_name"
-                app:civ_border_width="5dp" />
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="3dp" />
 
             <TextView
                 android:id="@+id/full_name"
@@ -56,7 +56,7 @@
                 android:layout_toRightOf="@+id/profile_image"
                 android:fontFamily="Montserrat"
                 android:gravity="left"
-                android:textColor="@color/blue_photo_name"
+                android:textColor="@color/colorPrimary"
                 android:textSize="19dp"
                 android:textStyle="bold"
                 app:fontFamily="@font/montserrat" />
@@ -66,7 +66,7 @@
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="130dp"
+                android:layout_marginLeft="88dp"
                 android:layout_marginTop="60dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="@color/conn"
@@ -137,7 +137,7 @@
                     android:layout_marginLeft="250dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="10dp"
-                    app:backgroundTint="@color/blue_photo_name"
+                    app:backgroundTint="@color/colorPrimary"
                     app:srcCompat="@drawable/ic_add" />
 
             </RelativeLayout>
