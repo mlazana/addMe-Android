@@ -123,7 +123,7 @@ public class Connection extends AppCompatActivity {
 
         //Retrieve the number of connections
         number_of_connections = (TextView) findViewById(R.id.connections);
-        DatabaseReference ref2 = ref.child("connections");
+        DatabaseReference ref2 = ref1.child("connections");
         getNumberOfCon(ref2);
 
         // Bottom Navigation

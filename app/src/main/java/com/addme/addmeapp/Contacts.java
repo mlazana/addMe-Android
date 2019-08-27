@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.util.ArrayUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +44,8 @@ public class Contacts extends AppCompatActivity {
             @Override
             public void onCallback(final ArrayList<String> userIds) {
                 Log.d("Start Testing", userIds.toString());
+                FirebaseUser u = FirebaseAuth.getInstance().getCurrentUser();
+                userIds.remove(u.getUid());
 
                 final String[] finaluserIds = userIds.toArray(new String[userIds.size()]);
                 final ArrayList<String> fullnames = new ArrayList<>();
@@ -51,15 +54,10 @@ public class Contacts extends AppCompatActivity {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        //I use the above line for not showing the current user (myself) in contacts)
-                        FirebaseUser u = FirebaseAuth.getInstance().getCurrentUser();
 
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             for (String s: finaluserIds) {
-
-                                //In the above line we do not add (myself) in contacts
-                                if (ds.getKey().equals(s) && !s.equals(u.getUid())) {
-                                    // here I add the names to the string
+                                if (ds.getKey().equals(s)) {
                                     fullnames.add(ds.child("fullname").getValue().toString());
                                 }
                             }
