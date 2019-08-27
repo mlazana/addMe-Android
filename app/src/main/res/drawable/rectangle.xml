@@ -5,7 +5,7 @@
 
     <stroke
         android:width="2dp"
-        android:color="@color/blue_photo_name" />
+        android:color="@color/colorPrimary" />
 
     <padding
         android:bottom="1dp"

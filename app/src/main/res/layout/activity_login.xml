@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AccountActivity.LoginActivity">
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="fill_parent"
@@ -15,7 +16,15 @@
         android:padding="@dimen/activity_horizontal_margin">
 
 
-        <!-- TODO: change the fontFamily -->
+        <ImageView
+            android:layout_width="@dimen/full_logo"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:contentDescription=""
+            android:src="@drawable/full_logo"
+            tools:ignore="ContentDescription" />
+
         <EditText
             android:id="@+id/email"
             android:layout_width="250dp"
@@ -24,9 +33,8 @@
             android:background="@drawable/edittext_round_corners"
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:alpha="0.50" />
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/white" />
 
 
         <EditText
@@ -38,12 +46,13 @@
             android:hint="@string/hint_password"
             android:inputType="textPassword"
             android:radius="30dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:alpha="0.50" />
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/white" />
 
 
         <!-- Login Button -->
+
+
 
         <Button
             android:id="@+id/btn_reset_password"
@@ -53,13 +62,13 @@
             android:background="@null"
             android:text="@string/btn_forgot_password"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_btn"
+            android:background="@drawable/edittext_round_corners_orange"
             android:padding="10dp"
             android:text="@string/btn_login"
             android:textColor="@android:color/white"
@@ -75,7 +84,7 @@
             android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             android:textSize="15dp"
             tools:ignore="SpUsage" />
 
