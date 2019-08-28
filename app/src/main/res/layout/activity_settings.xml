@@ -19,7 +19,7 @@
             android:layout_marginBottom="-59dp"
             android:fontFamily="sans-serif-light"
             android:text="Settings"
-            android:textColor="@color/bg_login"
+            android:textColor="@color/input_gray"
             android:textSize="30dp" />
 
         <Button
