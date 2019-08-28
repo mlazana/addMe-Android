@@ -432,8 +432,8 @@ public class MainActivity extends AppCompatActivity {
         textview_params.setMargins(0,dpTopx(50),0,0);
         textview.setLayoutParams(textview_params);
         textview.setGravity(Gravity.CENTER);
-        textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-        textview.setTextColor(getResources().getColor(R.color.colorPrimary));
+        textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        textview.setTextColor(getResources().getColor(R.color.black));
         textview.setText("Click the plus button on the right top to add your first social media");
         Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.roboto);
         textview.setTypeface(typeface);
