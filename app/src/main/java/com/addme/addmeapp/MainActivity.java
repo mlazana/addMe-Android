@@ -1,35 +1,34 @@
 package com.addme.addmeapp;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
-import android.nfc.Tag;
+import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.ViewGroup;
+import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.addme.addmeapp.AccountActivity.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,10 +39,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import android.support.v4.app.FragmentManager;
-import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton settings;
     private TextView fullname;
     private FirebaseAuth auth;
-    private TextView facebook;
     private FloatingActionButton addButton;
+    private TextView number_of_connections;
     public static String[] keys = {
             "facebook",
             "github",
@@ -65,7 +61,12 @@ public class MainActivity extends AppCompatActivity {
             "whatsapp"
     };
 
+    private final Handler handler = new Handler();
+    private final Runnable runnable = new Runnable() {
+        public void run() {
 
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
         //get the data for the current user
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(use.getUid());
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(use.getUid());
         setDataToView(ref);
 
 
@@ -134,13 +135,23 @@ public class MainActivity extends AppCompatActivity {
         social_icons.put("viber", R.drawable.ic_viber);
         social_icons.put("whatsapp", R.drawable.ic_whatsapp);
 
+        //Social for edit
+        final Map<String, Integer> social_edit = new HashMap<String, Integer>();
+        social_edit.put("facebook", R.id.facebook_edit);
+        social_edit.put("github", R.id.github_edit);
+        social_edit.put("instagram", R.id.instagram_edit);
+        social_edit.put("snapchat", R.id.snapchat_edit);
+        social_edit.put("twitter", R.id.twitter_edit);
+        social_edit.put("viber", R.id.viber_edit);
+        social_edit.put("whatsapp", R.id.whatsapp_edit);
+
         //Open database
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 //Retrieve the social's username for the current user
-                Map<String, String> social_names = new HashMap<String, String>();
+                final Map<String, String> social_names = new HashMap<String, String>();
                 User u = dataSnapshot.getValue(User.class);
                 social_names.put("facebook", u.getFacebook());
                 social_names.put("github", u.getGithub());
@@ -161,16 +172,87 @@ public class MainActivity extends AppCompatActivity {
                     parent.addView(EmptySocialList());
                 }
 
+                ArrayList<String> available_social = new ArrayList<String>();
+
                 //Add every social item which exist in the list of socials
                 if (empty == false){
                     for (String key :keys){
                         if(!social_names.get(key).isEmpty()) {
-                            RelativeLayout social_item = ConstructSocialItem(social_names.get(key), social_icons.get(key));
+                            RelativeLayout social_item = ConstructSocialItem(social_names.get(key), social_icons.get(key), social_edit.get(key));
                             parent.addView(social_item);
+                            available_social.add(key);
                         }
                     }
-
                 }
+
+                //Shows for every social item popupmenu with edit and delete
+                for(final String key : available_social) {
+                    final RelativeLayout rel_edit = (RelativeLayout) findViewById(social_edit.get(key));
+                    rel_edit.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+
+                            PopupMenu popupedit = new PopupMenu(MainActivity.this, rel_edit);
+                            popupedit.getMenuInflater().inflate(R.menu.popup_menu_myprof, popupedit.getMenu());
+
+                            popupedit.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    //This section runs if the user hits delete
+                                    if (item.getItemId() == R.id.delete_social){
+                                        DialogInterface.OnClickListener delete_dialog = new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                switch (which) {
+                                                    case DialogInterface.BUTTON_POSITIVE:
+                                                        DeleteSocial(key, ref);
+                                                        break;
+                                                    case DialogInterface.BUTTON_NEGATIVE:
+                                                        break;
+                                                }
+                                            }
+                                        };
+
+                                        //Build Dialog box for delete confirmation
+                                        AlertDialog.Builder delete_popup = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogTheme);
+                                        delete_popup.setTitle("Warning!");
+                                        delete_popup.setMessage("You are going to delete a social media. Are you sure you want to delete it?");
+                                        delete_popup.setPositiveButton("Yes", delete_dialog);
+                                        delete_popup.setNegativeButton("No", delete_dialog);
+                                        delete_popup.show();
+
+                                    }
+                                    //This section runs if the user hits edit
+                                    if (item.getItemId() == R.id.edit_social){
+                                        //Social Edit Fragment
+                                        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                                        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                                        //Send parameters
+                                        Bundle parameters = new Bundle();
+                                        parameters.putString("social", key);
+                                        parameters.putString("old_social_uname", social_names.get(key));
+                                        parameters.putInt("social_icon", social_icons.get(key));
+
+                                        FragmentSocialEdit fragment = new FragmentSocialEdit();
+                                        fragment.setArguments(parameters);
+                                        fragmentTransaction.add(R.id.fragment_container, fragment);
+                                        fragmentTransaction.addToBackStack(null);
+                                        fragmentTransaction.commit();
+                                    }
+
+                                    return false;
+                                }
+                            });
+
+                            popupedit.show();
+
+                            return false;
+                        }
+                    });
+                }
+
+
+
 
             }
             @Override
@@ -179,12 +261,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Retrieve the number of connections
+        number_of_connections = (TextView) findViewById(R.id.connections);
+        DatabaseReference ref2 = ref.child("connections");
+        getNumberOfCon(ref2);
+
+
         //Social Choose Fragment
         addButton = (FloatingActionButton) findViewById(R.id.AddActionButton);
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
 
                 android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -196,19 +283,52 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
-        //This section display a textview, when an user adds successfully a social media.
+        //This section displays messages from Fragments and Activity
         try {
             Intent intent = getIntent();
-            String social = intent.getStringExtra("social");
-            TextView suc_add_social = findViewById(R.id.succesful_add);
-            if (!social.isEmpty()) {
-                suc_add_social.setText("Congratulations! You just added your " + social + " account.");
+            String social;
+            //This section displays a textview, when an user adds successfully a social media.
+            if (intent.hasExtra("social")) {
+                social = intent.getStringExtra("social");
+                TextView suc_add_social = findViewById(R.id.succesful_add);
+                if (!social.isEmpty()) {
+                    suc_add_social.setText("Congratulations! You just added your " + social + " account.");
+                }
+            }
+
+            String text;
+
+            //This section displays a toast when a user deletes a social media
+            if (intent.hasExtra("social_delete")){
+                social = intent.getStringExtra("social_delete");
+                social = social.substring(0, 1).toUpperCase() + social.substring(1);
+                text = "You successfully delete your " + social + " account!";
+                Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
+            }
+
+            //This section displays a toast when a user edits a social media
+            if (intent.hasExtra("social_edit")) {
+                social = intent.getStringExtra("social_edit");
+                text = "You successfully edit your " + social + " account!";
+                Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
             }
         } catch (Exception e){
 
         }
 
+    }
+
+    /**
+     * This method deletes the given social
+     * @param social
+     * @param ref
+     */
+    private void DeleteSocial (String social, DatabaseReference ref){
+        ref.child(social).setValue("");
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("social_delete", social);
+        startActivity(intent);
     }
 
     /**
@@ -233,9 +353,10 @@ public class MainActivity extends AppCompatActivity {
      * This method constructs a layout for every item about every social media
      * @param name the name for the social media
      * @param social_icon the social media icon
+     * @param social_id the id for edit
      * @return the relative layout
      */
-    private RelativeLayout ConstructSocialItem(String name, int social_icon){
+    private RelativeLayout ConstructSocialItem(String name, int social_icon, int social_id){
 
         //RelativeLayout
         RelativeLayout social_media = new RelativeLayout(getApplicationContext());
@@ -244,6 +365,10 @@ public class MainActivity extends AppCompatActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         rlparams.setMargins(dpTopx(20),dpTopx(15),dpTopx(20),0 );
+
+        social_media.setClickable(true);
+        social_media.setId(social_id);
+
         social_media.setLayoutParams(rlparams);
 
         //Image View
@@ -307,8 +432,8 @@ public class MainActivity extends AppCompatActivity {
         textview_params.setMargins(0,dpTopx(50),0,0);
         textview.setLayoutParams(textview_params);
         textview.setGravity(Gravity.CENTER);
-        textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-        textview.setTextColor(getResources().getColor(R.color.colorPrimary));
+        textview.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        textview.setTextColor(getResources().getColor(R.color.black));
         textview.setText("Click the plus button on the right top to add your first social media");
         Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.roboto);
         textview.setTypeface(typeface);
@@ -346,5 +471,34 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * This method finds the number of Connections
+     * @param ref2
+     */
+    private void getNumberOfCon (DatabaseReference ref2){
+
+        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long x = dataSnapshot.getChildrenCount();
+                //I remove one connection, the dummy connection which is the current user
+                x = x - 1;
+                String text = "Connection";
+
+                if (x == 1){
+                    number_of_connections.setText(x + " " + text);
+                } else {
+                    number_of_connections.setText(x + " " + text + "s");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

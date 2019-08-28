@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    //For Fragment Social Choose
     <item type="id" name="facebook_button"/>
     <item type="id" name="instagram_button"/>
     <item type="id" name="github_button"/>
@@ -8,5 +8,15 @@
     <item type="id" name="whatsapp_button"/>
     <item type="id" name="twitter_button"/>
     <item type="id" name="snapchat_button"/>
+
+    //For Main Activity Edit-Delete user Social
+    <item type="id" name="facebook_edit"/>
+    <item type="id" name="instagram_edit"/>
+    <item type="id" name="github_edit"/>
+    <item type="id" name="viber_edit"/>
+    <item type="id" name="whatsapp_edit"/>
+    <item type="id" name="twitter_edit"/>
+    <item type="id" name="snapchat_edit"/>
+
 
 </resources>

@@ -74,8 +74,6 @@ public class Settings extends AppCompatActivity {
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
-        email = (TextView) findViewById(R.id.useremail);
-
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         setDataToView(user);
@@ -183,7 +181,7 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Build an AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this, R.style.AlertDialogTheme);
 
                 // Set a title for alert dialog
                 builder.setTitle("Warning!");
@@ -250,7 +248,6 @@ public class Settings extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void setDataToView(FirebaseUser user) {
 
-        email.setText("User Email: " + user.getEmail());
 
 
     }

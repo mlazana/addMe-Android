@@ -15,7 +15,7 @@
     <string name="hint_password">Password</string>
     <string name="hint_name">Full Name</string>
     <string name="btn_login">LOGIN</string>
-    <string name="prompt_password">Please enter your password</string>
+    <string name="prompt_password">Current password</string>
     <string name="btn_link_to_register">You do not have an account? Register now!</string>
     <string name="btn_link_to_login">Already registered. Login Me!</string>
     <string name="title_activity_reset_password">ResetPasswordActivity</string>

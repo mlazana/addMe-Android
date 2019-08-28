@@ -61,7 +61,7 @@ public class FragmentSocialEnter extends Fragment {
                 ref.child(social).setValue(username);
 
                 //The name of social that the user add
-                String cap = social.substring(0,1 ).toUpperCase() + social.substring(1);
+                String cap = social.substring(0, 1).toUpperCase() + social.substring(1);
 
                 Intent intent = new Intent();
                 intent.putExtra("social", cap);
